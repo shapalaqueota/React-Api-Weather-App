@@ -37,14 +37,16 @@ body {
   position: absolute;
   top: 10px;
   right: 10px;
+  background-color: rgba(0,92,155,0.3);
+  border-radius: 6px;
+}
+
+.search-container label{
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .input {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 50%; /* Обновлено: изменение радиуса закругления */
-  border-bottom-right-radius: 12px; /* Обновлено: изменение радиуса закругления */
-  color: white;
+  border-radius: 12px;
 }
 
 
@@ -86,7 +88,7 @@ body {
 .box {
   padding: 1.5rem;
   border-radius: 12px;
-  background-color: rgba(0,92,155,0.65);
+  background-color: rgba(0,92,155,0.3);
   width: 220px;
   text-align: center;
   display: flex;
@@ -94,7 +96,6 @@ body {
   gap: 0px;
   transition: transform 0.2s;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
 }
 
 .box:hover {
@@ -102,23 +103,32 @@ body {
 }
 
 .hourly-container {
-  display:inline-table;
+  display:flex;
   justify-content: center; 
-  padding-top: 5%;
 }
 
 .hourly-item {
   text-align: center;
   padding: 10px;
-  background-color: rgba(0,92,155, 0.65);
   backdrop-filter: blur(2px);
   border-radius: 12px;
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hourly-item img {
-  width: 50px;
-  height: 50px;
+  width: 70%;
+  margin-left: 0%;
+  padding-left: 30%;
+  
+}
+
+.back-slider{
+  justify-content: center;
+  display: flex;
+  background-color: rgba(0,92,155,0.3);
+  border-radius: 12px;
 }
 
 @media only screen and (max-width: 730px) {
@@ -130,15 +140,6 @@ body {
     flex-direction: column;
   }
 
-  .box,
-
-  .hourly-item {
-    width: 70vw;
-  }
-
-  .input {
-    color: white;
-  }
 }
 
 .slick-slider {
@@ -159,55 +160,30 @@ body {
 
 
 
-
-.slick-dots li.slick-active button {
-  color: #bbb;
+.rain-animation {
+  position:static;
+  pointer-events: none;
 }
 
-.sun-animation,
-.moon-animation {
-  width: 100px;
-  height: 100px;
-  position:absolute;
-  background-size: cover;
+.rain-animation hr {
+  width: 50px;
+  border-color: transparent;
+  border-right-color: rgba(255, 255, 255, 0.5);
+  border-right-width: 50px;
+  position: absolute;
+  bottom: 100%;
+  transform-origin: 100% 50%;
+  animation-name: rain;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
-.sun-animation {
-  background: url('background/sun.png') no-repeat center center/cover;
-  animation: sun-rise 10s infinite;
-}
-
-.moon-animation {
-  background: url('background/moon.png') no-repeat center center/cover;
-  animation: moon-rise 10s infinite;
-}
-
-@keyframes sun-rise {
-  0% {
-    transform: translateX(-100%);
-    opacity: 0;
+@keyframes rain {
+  from {
+    transform: rotate(105deg) translateX(0);
   }
-  50% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-}
-
-@keyframes moon-rise {
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  50% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100%);
-    opacity: 0;
+  to {
+    transform: rotate(105deg) translateX(calc(100vh + 20px));
   }
 }
